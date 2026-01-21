@@ -1,5 +1,6 @@
 policy "aws-costing" {
-    enforcement_level = "advisory"
+    source = "./aws-costing.sentinel"
+    enforcement_level = "soft-mandatory"
 }
 
 policy "aws-time" {
