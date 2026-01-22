@@ -1,8 +1,11 @@
-# aws-costing.sentinel
-import "tfplan"
+import "tfrun"
+import "decimal"
+
+# Get the monthly cost, defaulting to 0.0 if the estimate is missing/null
+monthly_cost = tfrun.cost_estimate.proposed_monthly_cost else 0.0
+
+print("Proposed Monthly Cost: " + string(monthly_cost))
 
 main = rule {
-    print("Current Monthly Cost: $505.92") and
-    print("Limit: $100.00") and
-    false
+    decimal.new(monthly_cost).less_than(10)
 }
