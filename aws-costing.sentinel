@@ -2,6 +2,9 @@ import "tfrun"
 import "decimal"
 
 monthly_cost = func() {
+    if tfrun.cost_estimate is null {
+        return 0.0
+    }
     if tfrun.cost_estimate.proposed_monthly_cost is null {
         return 0.0
     }
