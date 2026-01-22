@@ -1,8 +1,8 @@
 import "tfrun"
 import "decimal"
 
-# Get the monthly cost, defaulting to 0.0 if the estimate is missing/null
-monthly_cost = tfrun.cost_estimate.proposed_monthly_cost else 0.0
+# Use a conditional to handle null
+monthly_cost = tfrun.cost_estimate.proposed_monthly_cost is null ? 0.0 : tfrun.cost_estimate.proposed_monthly_cost
 
 print("Proposed Monthly Cost: " + string(monthly_cost))
 
