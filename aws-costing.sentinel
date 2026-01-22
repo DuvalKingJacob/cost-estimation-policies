@@ -1,8 +1,12 @@
 import "tfrun"
 import "decimal"
 
-# Use a conditional to handle null
-monthly_cost = tfrun.cost_estimate.proposed_monthly_cost is null ? 0.0 : tfrun.cost_estimate.proposed_monthly_cost
+monthly_cost = func() {
+    if tfrun.cost_estimate.proposed_monthly_cost is null {
+        return 0.0
+    }
+    return tfrun.cost_estimate.proposed_monthly_cost
+}()
 
 print("Proposed Monthly Cost: " + string(monthly_cost))
 
